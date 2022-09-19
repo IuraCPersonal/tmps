@@ -1,0 +1,99 @@
+#+TITLE: SOLID Principles
+#+AUTHOR: FCIM FAF 203 Cius Iurie
+
+** INTRODUCTION
+
+=SOLID= is an acronym for the first five object-oriented design (OOD) principles by Robert C. Martin. 
+
+- S - Single-responsiblity Principle
+- O - Open-closed Principle
+- L - Liskov Substitution Principle
+- I - Interface Segregation Principle
+- D - Dependency Inversion Principle
+
+** LABORATORY TASK
+
+Implement two principles from =SOLID=.
+
+*** PYTHON IMPLEMENTATION OF SINGLE RESPONSABILITY PRINCIPLE
+
+You can see the =Model= class below has a way to many responsibilities. Pre-processing data, training and evaluating the model, making predictions are different responsibilities that are all handled in Model class. This is against the single responsibility principle and is strongly not advised.
+
+#+begin_src python
+# Before the single responsibility principle
+
+class Model:
+    def ImportData(self):
+        pass
+
+    def PreProcess(self):
+        pass
+
+    def Train(self):
+        pass
+
+    def Predict(self):
+        pass
+
+    def Export(self):
+        pass
+#+end_src
+
+Now let's apply the single responsability principle on the same model.
+
+#+begin_src python
+# After the single responsability principle
+
+class ImportData:
+    pass
+
+class PreProcess:
+    pass
+
+class Train:
+    pass
+
+class Predict:
+    pass
+
+class Export:
+    pass
+#+end_src
+
+A full implementation can be found in the =model.py= file.
+
+*** PYTHON OPEN–CLOSED PRINCIPLE
+
+The open-closed principle states that a =class=, =method=, and =function= should be open for extension but closed for modification.
+
+The purpose of the open-closed principle is to make it easy to add new features (or use cases) to the system without directly modifying the existing code.
+
+#+begin_src python
+class ReadData:
+    def read_csv(self, path):
+        return pd.read_csv(path)
+
+    def read_url(self, path):
+        return json.loads(urlopen(path).read())
+#+end_src
+
+Later if we would want to import the data frame from in a different way we must modify the =ReadData= class. It means that the =ReadData= class is not open for extension but modification. Hence, it violates the open-closed principle. 
+
+#+begin_src python
+# First define an abstract class
+
+class ReadData(ABC):
+    @abstractmethod
+    def read(self, path):
+        pass
+
+# Second, create two classes to read the csv file. These classes inherit from the ReadData class
+
+class ReadLocal(ReadData):
+    def read(self, path):
+        return pd.read_csv(path)
+
+class ReadExternal(ReadData):
+    def read(self, path):
+        return json.loads(urlopen(path).read())
+#+end_src

@@ -13,9 +13,9 @@
 
 ** LABORATORY TASK
 
-Implement two principles from =SOLID=.
+*** TODO Implement two principles from =SOLID=.
 
-*** PYTHON IMPLEMENTATION OF SINGLE RESPONSABILITY PRINCIPLE
+**** PYTHON IMPLEMENTATION OF SINGLE RESPONSABILITY PRINCIPLE
 
 You can see the =Model= class below has a way to many responsibilities. Pre-processing data, training and evaluating the model, making predictions are different responsibilities that are all handled in Model class. This is against the single responsibility principle and is strongly not advised.
 
@@ -62,7 +62,7 @@ class Export:
 
 A full implementation can be found in the =model.py= file.
 
-*** PYTHON OPEN–CLOSED PRINCIPLE
+**** PYTHON OPEN–CLOSED PRINCIPLE
 
 The open-closed principle states that a =class=, =method=, and =function= should be open for extension but closed for modification.
 
@@ -81,14 +81,12 @@ Later if we would want to import the data frame from in a different way we must 
 
 #+begin_src python
 # First define an abstract class
-
 class ReadData(ABC):
     @abstractmethod
     def read(self, path):
         pass
 
 # Second, create two classes to read the csv file. These classes inherit from the ReadData class
-
 class ReadLocal(ReadData):
     def read(self, path):
         return pd.read_csv(path)

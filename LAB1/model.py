@@ -1,20 +1,19 @@
+# Open-Closed Principle
 class ImportData(ABC):
     @abstractmethod
     def read(self, path):
         pass
 
-
 class ReadLocal(ImportData):
     def read(self, path):
         return pd.read_csv(path)
-
 
 class ReadExternal(ImportData):
     def read(self, path):
         response = urlopen(path)
         return json.loads(response.read())
 
-
+# Single Responsability Principle
 class PreProcess:
     def __init__(self, df):
         self.__df = df
@@ -81,11 +80,10 @@ class Train():
     def evaluate(self):
         pass
 
-
 class LogisticRegression(Train):
     def evaluate(self):
         self.__logreg = LogisticRegression()
-        self.__logreg.fit(Evaluate.x_train, Evaluate.y_train)
+        self.__logreg.fit(Train.x_train, Train.y_train)
 
         return self.__logreg
 

@@ -1,0 +1,134 @@
+#+TITLE: Builder Creational Pattern
+#+AUTHOR: FCIM FAF 203 Cius Iurie
+#+PROPERTY: header-args :tangle Builder.py
+#+STARTUP: showeverything
+
+** PROBLEM
+
+** SOLUTION
+
+** EXAMPLE
+
+#+begin_src python :tangle yes
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Any
+#+end_src
+
+The Builder interface specifies methods for creating the different parts of
+the Product objects.
+
+#+begin_src python :tangle yes
+class Builder(ABC):
+    @property
+    @abstractmethod
+    def car(self) -> None:
+        pass
+
+    @abstractmethod
+    def produce_wheels() -> None:
+        pass
+
+    @abstractmethod
+    def produce_brakes(self) -> None:
+        pass
+
+    @abstractmethod
+    def produce_engine(self) -> None:
+        pass
+#+end_src
+
+The Concrete Builder classes follow the Builder interface and provide
+specific implementations of the building steps. Your program may have
+several variations of Builders, implemented differently.
+
+#+begin_src python :tangle yes
+class BMWBuilder(Builder):
+    def __init__(self) -> None:
+        self.reset()
+
+    def reset(self) -> None:
+        self._car = BMW()
+
+    @property
+    def car(self) -> BMW:
+        car = self._car
+        self.reset()
+        return car
+
+    def produce_wheels(self) -> None:
+        self._car.add("Wheels")
+
+    def produce_brakes(self) -> None:
+        self._car.add("Brakes")
+
+    def produce_engine(self) -> None:
+        self._car.add("Engine")
+#+end_src
+
+It makes sense to use the Builder pattern only when your products are quite
+complex and require extensive configuration.
+
+Unlike in other creational patterns, different concrete builders can produce
+unrelated products. In other words, results of various builders may not
+always follow the same interface.
+
+#+begin_src python :tangle yes
+class BMW():
+    def __init__(self) -> None:
+        self.parts = []
+
+    def add(self, part: Any) -> None:
+        self.parts.append(part)
+
+    def list_parts(self) -> None:
+        print(f"Car parts: {', '.join(self.parts)}", end="")
+#+end_src
+
+The Director is only responsible for executing the building steps in a
+particular sequence. It is helpful when producing products according to a
+specific order or configuration. Strictly speaking, the Director class is
+optional, since the client can control builders directly.
+
+#+begin_src python :tangle yes
+class Director:
+    def __init__(self) -> None:
+        self._builder = None
+
+    @property
+    def builder(self) -> Builder:
+        return self._builder
+
+    @builder.setter
+    def builder(self, builder: Builder) -> None:
+        self._builder = builder
+
+    def build_minimal_car(self) -> None:
+        self.builder.produce_engine()
+
+    def build_full_car(self) -> None:
+        self.builder.produce_engine()
+        self.builder.produce_wheels()
+        self.builder.produce_brakes()
+#+end_src
+
+The client code creates a builder object, passes it to the director and then
+initiates the construction process. The end result is retrieved from the
+builder object.
+
+#+begin_src python :tangle yes
+if __name__ == '__main__':
+    director = Director()
+    builder = BMWBuilder()
+    director.builder = builder
+
+    print('Standard Basic Car')
+    director.build_minimal_car()
+    builder.car.list_parts()
+
+    print("\n")
+
+    print('Standard Full Car')
+    director.build_full_car()
+    builder.car.list_parts()
+#+end_src

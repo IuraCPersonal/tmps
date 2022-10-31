@@ -1,0 +1,147 @@
+#+TITLE: Abstract Factory Creational Pattern
+#+AUTHOR: FCIM FAF 203 Cius Iurie
+#+PROPERTY: header-args :tangle AbstractFactoryClient.py
+#+STARTUP: showeverything
+
+** PROBLEM
+
+=Abstract Factory= is a creational design pattern that allows you to create families of linked/related/similar objects without specifying their concrete classes.
+
+Suppose we have a car factory simulator. Basically, our code would consists of classes that represent:
+
+1. A family of =related= products, say: =BMW= + =Mercedes= + =Ford=.
+2. Several variants/models of this family. Any of these cars are available in different variants: =SUV= + =Sedan= + =Coupe=.
+
+We need a way to create individual car objects. Also, we don't want to change existing code when adding new cars or families of cars to the program.
+
+** SOLUTION
+
+The first thing the =Abstract Factory= suggests is to explicitly declare interfaces for each distinct car of the car family (e.g. bmw, mercedes, ford). After that we can make all the variants of cars using those interfaces.
+
+The next step is to declare the =Abstract Factory=. It consists of a list of creation methods for all cars that are part of the car family (e.g. createBMW, createMercedes, createAudi). These methods return =abstract= car types represented by the interfaces we created previously.
+
+Now, for each =variant= of a car family, we create a separate factory class based on the =AbstractFactory= interface. This factory class must return only cars of a particular kind. For example, the =SUVCarFactory= can only create =SUVBMW=, =SUVMercedes= and =SUVFord= objects.
+
+The client code has to work with both factories and products via their respective abstract interfaces. This lets you change the type of a factory that you pass to the client code, as well as the product variant that the client code receives, without breaking the actual client code.
+
+** EXAMPLE
+
+#+begin_src python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+#+end_src
+
+The Abstract Factory interface declares a set of methods that return
+different abstract products. These products are called a family and are
+related by a high-level theme or concept. Products of one family are usually
+able to collaborate among themselves. A family of products may have several
+variants, but the products of one variant are incompatible with products of 
+another.
+
+#+begin_src python
+class AbstractFactory(ABC):
+    @abstractmethod
+    def create_bmw(self) -> BMW:
+        pass
+
+    @abstractmethod
+    def create_mercedes(self) -> Mercedes:
+        pass
+#+end_src
+
+Concrete Factories produce a family of products that belong to a single
+variant. The factory guarantees that resulting products are compatible. Note 
+that signatures of the Concrete Factory's methods return an abstract
+product, while inside the method a concrete product is instantiated.
+
+#+begin_src python
+class SedanFactory(AbstractFactory):
+    def create_bmw(self) -> BMW:
+        return SedanBMW()
+
+    def create_mercedes(self) -> Mercedes:
+        return SedanMercedes()
+#+end_src
+
+#+begin_src python
+class SuvFactory(AbstractFactory):
+    def create_bmw(self) -> BMW:
+        return SuvBMW()
+
+    def create_mercedes(self) -> Mercedes:
+        return SuvMercedes()
+#+end_src
+
+Each distinct product of a product family should have a base interface. All
+variants of the product must implement this interface.
+
+#+begin_src python
+class BMW(ABC):
+    @abstractmethod
+    def confort_mode(self) -> str:
+        pass
+
+class SedanBMW(BMW):
+    def confort_mode(self) -> str:
+        return "Sedan BMW Confort Mode ON"
+
+class SuvBMW(BMW):
+    def confort_mode(self) -> str:
+        return "SUV BMW Confort Mode ON"
+#+end_src
+
+Here's the the base interface of another product. All products can interact
+with each other, but proper interaction is possible only between products of
+the same concrete variant.
+
+#+begin_src python
+class Mercedes(ABC):
+    @abstractmethod
+    def confort_mode(self) -> None:
+        pass
+
+    @abstractmethod
+    def confort_mode_plus(self, collaborator: BMW) -> None:
+        pass
+
+class SedanMercedes(Mercedes):
+    def confort_mode(self) -> str:
+        return "Sedan Mercedes Mode ON"
+
+    def confort_mode_plus(self, collaborator: BMW) -> str:
+        result = collaborator.confort_mode()
+        return f"Sedan Mercedes Confort+{result}"
+
+class SuvMercedes(Mercedes):
+    def confort_mode(self) -> str:
+        return "SUV Mercedes Confort Mode ON"
+
+    def confort_mode_plus(self, collaborator: BMW):
+        result = collaborator.confort_mode()
+        return f"SUV Mercedes Confort+{result}"
+
+#+end_src
+
+The client code works with factories and products only through abstract
+types: AbstractFactory and AbstractProduct. This lets you pass any factory
+or product subclass to the client code without breaking it.
+
+#+begin_src python
+def client_code(factory: AbstractFactory) -> None:
+    BMW = factory.create_bmw()
+    Mercedes = factory.create_mercedes()
+
+    print(f"{Mercedes.confort_mode()}")
+    print(f"{Mercedes.confort_mode_plus(BMW)}", end="")
+#+end_src
+
+#+begin_src python
+if __name__ == "__main__":
+    print("Client: Testing client code with the first factory type:")
+    client_code(SedanFactory())
+
+    print("\n")
+
+    print("Client: Testing the same client code with the second factory type:")
+    client_code(SuvFactory())
+#+end_src

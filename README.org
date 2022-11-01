@@ -18,8 +18,8 @@ All the solutions are written in =Python=.
 
 | Laboratory No. | Status | Grade  |
 |----------------+--------+--------|
-| LAB 01         | =DONE= | =9=    |
-| LAB 02         | =TODO= | =NONE= |
+| [[https://github.com/IuraCPersonal/tmps/tree/main/solid][LAB 01]]        | =DONE= | =9=    |
+| [[https://github.com/IuraCPersonal/tmps/tree/main/creational][LAB 02]]   | =DONE= | =WAITING= |
 | LAB 03         | =TODO= | =NONE= |
 |----------------+--------+--------|
 

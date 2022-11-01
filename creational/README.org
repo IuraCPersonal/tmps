@@ -9,32 +9,26 @@
   - [[#prototype][PROTOTYPE]]
   - [[#singleton][SINGLETON]]
 
-** ABSTRACT FACTORY
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/abstract_factory][ABSTRACT FACTORY]]
 
 Abstract Factory is a creational design pattern, which solves the problem of creating entire product families without specifying their concrete classes.
 
-** BUILDER
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/builder][BUILDER]]
 
 Builder is a creational design pattern, which allows constructing complex objects step by step.
 
-** FACTORY METHOD
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/factory_method][FACTORY METHOD]]
 
 Factory method is a creational design pattern which solves the problem of creating product objects without specifying their concrete classes.
 
-** OBJECT POOL
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/object_pool][OBJECT POOL]]
 
-This pattern is used when creating an object is costly (and they are
-created frequently) but only a few are used at a time. With a Pool we
-can manage those instances we have as of now by caching them. Now it
-is possible to skip the costly creation of an object if one is
-available in the pool.
+This pattern is used when creating an object is costly (and they are created frequently) but only a few are used at a time. With a Pool we can manage those instances we have as of now by caching them. Now it is possible to skip the costly creation of an object if one is available in the pool.
 
-** PROTOTYPE
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/prototype][PROTOTYPE]]
 
-This patterns aims to reduce the number of classes required by an
-application. Instead of relying on subclasses it creates objects by
-copying a prototypical instance at run-time.
+This patterns aims to reduce the number of classes required by an application. Instead of relying on subclasses it creates objects by copying a prototypical instance at run-time.
 
-** SINGLETON
+** [[https://github.com/IuraCPersonal/tmps/tree/main/creational/singleton][SINGLETON]]
 
 Singleton is a creational design pattern, which ensures that only one object of its kind exists and provides a single point of access to it for any other code.

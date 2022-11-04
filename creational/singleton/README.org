@@ -1,0 +1,19 @@
+#+TITLE: SINGLETON DESIGN PATTERN
+
+** TABLE OF CONTENTS :toc:
+  - [[#problem][PROBLEM]]
+  - [[#solution][SOLUTION]]
+
+** PROBLEM
+
+The =Singleton= principle helps us with 2 main problems:
+
+1. Ensures that a class has only one instance. This solves the problem of control access to some shared resource.
+2. Provides a global access point to that instance. The Singleton pattern lets you access some object from anywhere in the program. However, it also protects that instance from being overwritten by other code.
+
+** SOLUTION
+
+To solve these problems, Singleton pattern suggests:
+
+1. Make the default constructor private, to prevent other objects from using the =new= operator with the Singleton class.
+2. Create a static creation method that acts as a constructor. Under the hood, this method calls the private constructor to create an object and saves it in a static field. All following calls to this method return the cached object.

@@ -1,0 +1,13 @@
+#+TITLE: PROTOTYPE DESIGN PATTERN
+
+** TABLE OF CONTENTS :toc:
+
+** PROBLEM
+
+What if you want to create an exact copy of a class instance? First, you would create a new instance of the same class, then you have to go through all the fields of the desired objects and copy them in the new instance.
+
+But this is not always possible. What if some values are private? They won't be visible outside the scope of that object.
+
+** SOLUTION
+
+The Prototype pattern delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface lets you clone an object without coupling your code to the class of that object. Usually, such an interface contains just a single clone method.

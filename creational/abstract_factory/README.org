@@ -1,7 +1,11 @@
-#+TITLE: Abstract Factory Creational Pattern
+#+TITLE: ABSTRACT FACTORY DESIGN PATTERN
 #+AUTHOR: FCIM FAF 203 Cius Iurie
-#+PROPERTY: header-args :tangle AbstractFactoryClient.py
 #+STARTUP: showeverything
+
+** TABLE OF CONTENTS :toc:
+  - [[#problem][PROBLEM]]
+  - [[#solution][SOLUTION]]
+  - [[#example][EXAMPLE]]
 
 ** PROBLEM
 

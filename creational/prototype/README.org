@@ -1,6 +1,8 @@
 #+TITLE: PROTOTYPE DESIGN PATTERN
 
 ** TABLE OF CONTENTS :toc:
+  - [[#problem][PROBLEM]]
+  - [[#solution][SOLUTION]]
 
 ** PROBLEM
 

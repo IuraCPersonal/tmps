@@ -2,6 +2,9 @@
 #+AUTHOR: FCIM FAF 203 Cius Iurie
 
 ** TABLE OF CONTENTS :toc:
+  - [[#problem][PROBLEM]]
+  - [[#solution][SOLUTION]]
+  - [[#example][EXAMPLE]]
 
 ** PROBLEM
 

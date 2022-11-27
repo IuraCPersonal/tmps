@@ -1,13 +1,17 @@
 from adapter.Adapter import *
+from facade.Facade import *
 
 def main():
-    # Plug in
     socket  = Port()
     adapter = Adapter(socket)
     airpods  = Airpods(adapter)
 
-    # Make coffee
     airpods.charge()
+
+    choosen_theme = Theme('Welcome to iPhone')
+    dark_theme = DarkTheme(choosen_theme)
+
+    SetupiPhone().setup()
 
     return 0
 

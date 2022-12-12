@@ -68,6 +68,8 @@ class Shutdown(BaseComponent):
 
 
 class Sleep(BaseComponent):
-    def suspend(self) -> None:
+    def suspend(self, subject, service) -> None:
         print('> Suspneding...')
+        # Disable the Update Service.
+        subject.detach(service)
         self.mediator.notify(self, 'Sleep')

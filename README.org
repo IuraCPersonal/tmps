@@ -27,3 +27,7 @@ All the solutions are written in =Python=.
 ** 📮 CONTACT
 
 If you have any question, please contact me through email: =iurie.cius@isa.utm.md=.
+
+** 🥇 CREDITS
+
+Big thanks to `https://refactoring.guru/` 🙏.

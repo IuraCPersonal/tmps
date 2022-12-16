@@ -30,4 +30,4 @@ If you have any question, please contact me through email: =iurie.cius@isa.utm.m
 
 ** 🥇 CREDITS
 
-Big thanks to `https://refactoring.guru/` 🙏.
+Big thanks to =https://refactoring.guru/= 🙏.

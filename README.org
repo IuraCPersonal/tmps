@@ -16,13 +16,13 @@ All the solutions are written in =Python=.
 
 ** 🎯 PROGRESS
 
-| Laboratory No. | Status | Grade  |
-|----------------+--------+--------|
-| [[https://github.com/IuraCPersonal/tmps/tree/main/solid][LAB 01]]        | =DONE= | =9=    |
-| [[https://github.com/IuraCPersonal/tmps/tree/main/creational][LAB 02]]   | =DONE= | =8=    |
-| [[https://github.com/IuraCPersonal/tmps/tree/main/structural][LAB 03]]   | =DONE= | =10=    |
-| [[https://github.com/IuraCPersonal/tmps/tree/main/behavioral][LAB 04]]   | =DONE= | =None=    |
-|----------------+--------+--------|
+| Laboratory No. | Status |
+|----------------+--------------|
+| [[https://github.com/IuraCPersonal/tmps/tree/main/solid][LAB 01]]        | =DONE= |
+| [[https://github.com/IuraCPersonal/tmps/tree/main/creational][LAB 02]]   | =DONE= |
+| [[https://github.com/IuraCPersonal/tmps/tree/main/structural][LAB 03]]   | =DONE= |
+| [[https://github.com/IuraCPersonal/tmps/tree/main/behavioral][LAB 04]]   | =DONE= |
+|----------------+--------------|
 
 ** 📮 CONTACT
 
